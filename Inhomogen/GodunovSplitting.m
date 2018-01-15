@@ -6,24 +6,22 @@
 %   dtQ + HQ/(1-P)dxP + (1-HQ/(1-P))dxQ = 0
 %for the ODE we take the resulting Q to get Z
 %   Z = HQ/((1-P)^H)
-%the ODE is then solved with implicit euler in order to be able to set
-%epsilon = 0
+%the ODE:
 %   dtP = 0
 %   dtZ = -1/epsilon*(Z-H*F(P)/((1-P)^H))
-%The update formula for the implicit Euler is
-%   Zn+1 = (epsilon*Zn + dt*C)/(epsilon + dt)
-%If we don't allow epsilon = 0 we directly get an exact solution for Z(t)
+%We have to distinguish two cases
+%epsilon=0:
+%   Z = H*F(p)/((1-p)^H)
+%for epsilon > 0 we can solve the ODE and get
 %   Z(t) = exp(-dt/epsilon)(Z0 + epsilon*C*exp(dt/epsilon)-epsilon*C)
 %with C = H*F(P)/(epsilon*(1-P)^H)
-
-%If epsilon is allowed to be zero, epsilon_zero is set true
-epsilon_zero = true;
 
 %Setting the model-parameters
 %H >= 1, shouldn't be choosen to large since it's the distance in the 
 %Taylor approximation
 H = 1;
-%for epsilon->0 the model should behave like the LWR-model
+%for epsilon->0 the model should behave like the LWR-model, epsilon is
+%allowed to be zero
 epsilon = 0.01;
 
 %Setting the parameters for the numerical method
@@ -69,10 +67,8 @@ for i = 1:2*N
     q_star = u_star(2,:);
     C = H*p./(epsilon*(1-p).^(H-1));
     z0 = H*q_star./((1-p).^H);
-    if epsilon_zero 
-        %in this case we need a diffrent dt
-        dt = 1;
-        z = (epsilon*z0 + dt*C)/(epsilon+dt);
+    if epsilon == 0 
+        z = H*C;
     else
         z = exp(-1/epsilon*dt).*(z0 + epsilon*C.*exp(1/epsilon*dt) - epsilon*C);
     end
