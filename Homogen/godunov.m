@@ -8,9 +8,9 @@ t = 0;
 
 x = (a+dx/2:dx:b-dx/2);
 
-u0 = 1/4*ones(2,N)
+u0 = 1/4*ones(2,N);
 u0(1,1:50) = 2*u0(1,1:50);
-
+u0(2,1:50) = 1/2*u0(2,1:50);
 
 
 figure
@@ -20,7 +20,7 @@ title(plot_p,{['Time ',num2str(t)];'Initial values for \rho'})
 plot_q = subplot(2,1,2);
 plot(plot_q,x,u0(2,:),'x');
 title(plot_q,'Initial values for q')
-axis([plot_p,plot_q],[a b 0 1.1])
+axis([plot_p,plot_q],[a b 0 0.6])
 pause
 
 dt = get_dt(H,u0,dx);
@@ -35,6 +35,7 @@ for i = 1:2*N
     plot_q = subplot(2,1,2);
     plot(plot_q,x,u(2,:),'x');
     title(plot_q,'Values for q')
+    axis([plot_p,plot_q],[a b 0 0.6])
     
     pause(dt);
     
