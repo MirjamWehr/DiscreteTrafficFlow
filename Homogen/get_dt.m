@@ -12,7 +12,7 @@ lambda1 = -H*u(2,:)./(1-u(1,:)).^H;
 %the second eigenvalue is 1 so compare the lambda1 with the highest absolut
 %value to 1 and get the maximal speed
 %the CFL-condition reads dt/dx*lambda_max < 1/2
-dt = dx*1/(2*max(max(abs(lambda1)),1));
+dt = dx*1/(max(max(abs(lambda1)),1));
 
 end
 

@@ -16,8 +16,16 @@ ur(:,end) = ur(:,end-1);
 uml = getM(H,ul,u_old);
 umr = getM(H,u_old,ur);
 
+%converting the variables
+vml = UtoV(uml,H);
+vmr = UtoV(umr,H);
+v_old = UtoV(u_old,H);
+
 %calculating the new u
-u_new = u_old - (dt/dx)*(f(umr,H)-f(uml,H));
+v_new = v_old - (dt/dx)*(f(vmr,H)-f(vml,H));
+
+%converting the result
+u_new = VtoU(v_new,H);
 
 end
 
