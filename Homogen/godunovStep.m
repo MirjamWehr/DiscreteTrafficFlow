@@ -17,7 +17,7 @@ uml = getM(H,ul,u_old);
 umr = getM(H,u_old,ur);
 
 %calculating the new u
-u_new = u_old - (dt/dx)^2*(f(umr,H)-f(uml,H));
+u_new = u_old - (dt/dx)*(f(umr,H)-f(uml,H));
 
 end
 

@@ -1,4 +1,5 @@
-H = 1.1;
+
+H = 1;
 %number of cells
 N = 100;
 a = 0;

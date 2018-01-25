@@ -1,13 +1,13 @@
 function [ y ] = f( u,H )
-%f the function f of the problem dt u + f(u)dx u = 0
+%f the function f of the problem dt v + f(v)dx v = 0, where v = (p,z)
 %   u, 2xN matrix
 %   H, scalar >= 1, function parameter
-%   z, 2xN matrix, function value of f at u
+%   y, 2xN matrix, function value of f at u
 
-p = u(2,:);
-q = H.*u(2,:)./((1-u(1,:)).^H);
+f1 = u(2,:);
+f2 = H.*u(2,:)./((1-u(1,:)).^H);
 
-y = [p;q];
+y = [f1;f2];
 
 end
 
