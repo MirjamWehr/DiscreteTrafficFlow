@@ -1,7 +1,7 @@
 
 H = 1;
 %number of cells
-N = 100;
+N = 400;
 a = 0;
 b = 1;
 dx = (b-a)/N;
@@ -15,10 +15,10 @@ qr = 1/4;
 pl = 1/4;
 pr = 1/2;
 u0 = ones(2,N);
-u0(1,1:50) = pl*u0(1,1:50);
-u0(2,1:50) = ql*u0(2,1:50);
-u0(1,51:100) = pr*u0(1,51:100);
-u0(2,51:100) = qr*u0(2,51:100);
+u0(1,1:200) = pl*u0(1,1:200);
+u0(2,1:200) = ql*u0(2,1:200);
+u0(1,201:N) = pr*u0(1,201:N);
+u0(2,201:N) = qr*u0(2,201:N);
 
 figure
 plot_p = subplot(2,1,1);
@@ -38,7 +38,7 @@ pause
 
 dt = get_dt(H,u0,dx);
 u = godunovStep(u0,dt,dx,H);
-for i = 1:2*N
+for i = 1:N
     
     t = t+dt;
     analyticalU = analyticalSolutionValue(t,[pl;ql],[pr;qr],H,xrieman);
