@@ -5,15 +5,16 @@ function [ ktPair ] = TestForKuhnTuckerPair( x,y )
 %   y 1x13 vector, an approximate local maximum for the dual problem
 %   ktPair boolean, true if (x,y) is a Kuhn Tucker pair, false if not
 
-if GradientOfLagrangian(x,y) ~= zeros(1,6)
+TOL = 10^(-6);
+if equalsZero(GradientOfLagrangian(x,y),TOL)
     ktPair = false;
-elseif F1(x).*y(1:9) ~= zeros(1,9)
+elseif equalsZero(F1(x).*y(1:9),TOL)
     ktPair = false;
 elseif sum(F1(x)>0)>0
     ktPair = false;
 elseif sum(y(1:9)<0)>0
     ktPair = false;
-elseif F2(x) ~= zeros(1:4)
+elseif equalsZero(F2(x),TOL)
     ktPair = false;
 else
     ktPair = true;

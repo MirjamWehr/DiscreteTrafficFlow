@@ -4,10 +4,15 @@ function [ y ] = F2( x )
 %   x 1x6 vector, where x=(q1,q2,q3,p1,p2,p3)
 %   y 1x4 vector, for each fj
 
-n1 = 0;
-d2 = 0;
-d3 = 0;
-qhat1 = 0;
+global qhat1;
+global qhat2;
+global qhat3;
+global phat1;
+global phat2;
+global phat3;
+n1 = 1-phat1;
+d2 = qhat2-phat2;
+d3 = qhat3-phat3;
 
 q1=x(1);
 q2=x(2);
@@ -20,6 +25,6 @@ y=zeros(1,4);
 y(1) = q1-p2-p3-d2-d3;
 y(2) = q2-p2-d2;
 y(3) = q3-p3-d3;
-y(4) = qhat1*p1+n1*p2+n1*p3-qhat1+n1*(d2+d3);
+y(4) = n1*q1+qhat1*p1-qhat1;
 end
 
