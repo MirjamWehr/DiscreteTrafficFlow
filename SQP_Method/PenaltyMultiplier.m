@@ -9,11 +9,11 @@ global phat2;
 global phat3;
 
 qhat1 = 1/4;
-qhat2 = 3/16;
+qhat2 = 1/16;
 qhat3 = 1/16;
 phat1 = 1/2;
-phat2 = 3/8;
-phat3 = 3/8;
+phat2 = 1/16;
+phat3 = 1/16;
 
 %init
 r = 1; % has to be greater 0
@@ -24,7 +24,7 @@ ktPair =  false;
 k = 0;
 x0 = findValidx0();
 
-while (k<50 && ~ktPair)
+while (k<3000 && ~ktPair)
     auglagrangian = @(x)augmentedLagrangian(x,y,r);
     x = fminsearch(auglagrangian,x0);
     x0 = x;
