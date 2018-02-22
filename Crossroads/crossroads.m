@@ -21,6 +21,28 @@ u1 = init_u(phat1,qhat1,N);
 u2 = init_u(phat2,qhat2,N);
 u3 = init_u(phat3,qhat3,N);
 
+%plot the initial setting
+figure
+plot_u1 = subplot(2,2,[1,3]);
+plot(plot_u1,x,u1(1,:),'-r');
+hold on
+plot(plot_u1,x,u1(2,:),'-b');
+hold off
+title(plot_u1,'Incoming Road 1');
+plot_u2 = subplot(2,2,2);
+plot(plot_u2,x,u2(1,:),'-r');
+hold on
+plot(plot_u2,x,u2(2,:),'-b');
+hold off
+title(plot_u2,'Outgoing Road 2');
+plot_u3 = subplot(2,2,4);
+plot(plot_u3,x,u3(1,:),'-r');
+hold on
+plot(plot_u3,x,u3(2,:),'-b');
+hold off
+title(plot_u3,'Outgoing Road 3');
+axis([plot_u1,plot_u2,plot_u3],[0 1 0 1]);
+
 if isValid(phat1,qhat1,phat2,qhat2,phat3,qhat3)
     %get the value of the crossroads
     [ubar1,ubar2,ubar3] = getUbar(phat1,qhat1,phat2,qhat2,phat3,qhat3);
