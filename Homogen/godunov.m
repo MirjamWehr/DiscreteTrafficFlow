@@ -37,7 +37,9 @@ hold off
 pause
 
 dt = get_dt(H,u0,dx);
-u = godunovStep(u0,dt,dx,H);
+boundary_left = u0(:,1);
+boundary_right = u0(:,end);
+u = godunovStep(u0,dt,dx,H,boundary_left,boundary_right);
 for i = 1:N
     
     t = t+dt;
@@ -60,7 +62,9 @@ for i = 1:N
     pause(dt);
     
     dt = get_dt(H,u,dx);
-    u = godunovStep(u,dt,dx,H);
+    boundary_left = u(:,1);
+    boundary_right = u(:,end);
+    u = godunovStep(u,dt,dx,H,boundary_left,boundary_right);
     
 end
     
