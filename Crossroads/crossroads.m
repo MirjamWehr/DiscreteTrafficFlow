@@ -29,18 +29,24 @@ hold on
 plot(plot_u1,x,u1(2,:),'-b');
 hold off
 title(plot_u1,'Incoming Road 1');
+xlabel(plot_u1,'x');
+legend(plot_u1,'\rho_1','q_1');
 plot_u2 = subplot(2,2,2);
 plot(plot_u2,x,u2(1,:),'-r');
 hold on
 plot(plot_u2,x,u2(2,:),'-b');
 hold off
 title(plot_u2,'Outgoing Road 2');
+xlabel(plot_u2,'x');
+legend(plot_u2,'\rho_2','q_2','Orientation','horizontal');
 plot_u3 = subplot(2,2,4);
 plot(plot_u3,x,u3(1,:),'-r');
 hold on
 plot(plot_u3,x,u3(2,:),'-b');
 hold off
 title(plot_u3,'Outgoing Road 3');
+xlabel(plot_u3,'x');
+legend(plot_u3,'\rho_3','q_3','Orientation','horizontal');
 axis([plot_u1,plot_u2,plot_u3],[0 1 0 1]);
 
 if isValid(phat1,qhat1,phat2,qhat2,phat3,qhat3)
