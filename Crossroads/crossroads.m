@@ -16,11 +16,11 @@ x = 0+1/2*dx:dx:1-1/2*dx;
 %current traffic on the roads
 %!!Important: the initial values always have to fulfil certain conditions!!
 phat1 = 1/2;
-qhat1 = 1/4;
-phat2 = 1/2;
-qhat2 = 1/4;
-phat3 = 1/2;
-qhat3 = 3/16;
+qhat1 = 1/2;
+phat2 = 0.8;
+qhat2 = 0.2;
+phat3 = 0.8;
+qhat3 = 0.2;
 %initializing u
 u1 = init_u(phat1,qhat1,N);
 u2 = init_u(phat2,qhat2,N);
@@ -63,7 +63,7 @@ pause();
 
 %solve the PDE
 t=0;
-for i=1:N*10
+for i=1:N
     %get the next timestep
     dt1 = get_dt(H,u1,dx);
     dt2 = get_dt(H,u2,dx);
@@ -71,14 +71,14 @@ for i=1:N*10
     dt = min([dt1,dt2,dt3]);
     %solve the PDE for one timestep
     %use default boundary conditions with copied boundary in ghost cell
-%     u1 = godunovStep(u1,dt,dx,H,u1(:,1),ubar1);
-%     u2 = godunovStep(u2,dt,dx,H,ubar2,u2(:,end));
-%     u3 = godunovStep(u3,dt,dx,H,ubar3,u3(:,end));
+    u1 = godunovStep(u1,dt,dx,H,u1(:,1),ubar1);
+    u2 = godunovStep(u2,dt,dx,H,ubar2,u2(:,end));
+    u3 = godunovStep(u3,dt,dx,H,ubar3,u3(:,end));
     %use own boundary conditions for example cars comming in the first road
     %or a traffic jam at the end of one or both outgoing roads
-    u1 = godunovStep(u1,dt,dx,H,[max(u1(1,1),0.7);u1(2,1)],ubar1);
-    u2 = godunovStep(u2,dt,dx,H,ubar2,[u2(1,1);min(u2(2,1),0)]);
-    u3 = godunovStep(u3,dt,dx,H,ubar3,[u3(1,1);min(u3(2,1),0.1)]);
+%     u1 = godunovStep(u1,dt,dx,H,[max(u1(1,1),0.7);u1(2,1)],ubar1);
+%     u2 = godunovStep(u2,dt,dx,H,ubar2,[u2(1,1);min(u2(2,1),0)]);
+%     u3 = godunovStep(u3,dt,dx,H,ubar3,[u3(1,1);min(u3(2,1),0.1)]);
     %update the plots
     plot_u1 = subplot(2,2,[1,3]);
     plot(plot_u1,x,u1(1,:),'-r');
@@ -109,4 +109,5 @@ for i=1:N*10
     qhat3 = u3(2,1);
     [ubar1,ubar2,ubar3] = getUbar(phat1,qhat1,phat2,qhat2,phat3,qhat3);
     drawnow;
+    pause()
 end
