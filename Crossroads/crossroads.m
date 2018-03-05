@@ -17,10 +17,10 @@ x = 0+1/2*dx:dx:1-1/2*dx;
 %!!Important: the initial values always have to fulfil certain conditions!!
 phat1 = 1/2;
 qhat1 = 1/2;
-phat2 = 0.8;
-qhat2 = 0.2;
-phat3 = 0.8;
-qhat3 = 0.2;
+phat2 = 0.9;
+qhat2 = 0.1;
+phat3 = 1;
+qhat3 = 0;
 %initializing u
 u1 = init_u(phat1,qhat1,N);
 u2 = init_u(phat2,qhat2,N);
@@ -77,8 +77,8 @@ for i=1:N
     %use own boundary conditions for example cars comming in the first road
     %or a traffic jam at the end of one or both outgoing roads
 %     u1 = godunovStep(u1,dt,dx,H,[max(u1(1,1),0.7);u1(2,1)],ubar1);
-%     u2 = godunovStep(u2,dt,dx,H,ubar2,[u2(1,1);min(u2(2,1),0)]);
-%     u3 = godunovStep(u3,dt,dx,H,ubar3,[u3(1,1);min(u3(2,1),0.1)]);
+%     u2 = godunovStep(u2,dt,dx,H,ubar2,[max(0,u2(1,1)-0.7);min(u2(1,1),0.7)]);
+%     u3 = godunovStep(u3,dt,dx,H,ubar3,[max(0,u3(1,1)-0.7);min(u3(1,1),0.7)]);
     %update the plots
     plot_u1 = subplot(2,2,[1,3]);
     plot(plot_u1,x,u1(1,:),'-r');
@@ -109,5 +109,4 @@ for i=1:N
     qhat3 = u3(2,1);
     [ubar1,ubar2,ubar3] = getUbar(phat1,qhat1,phat2,qhat2,phat3,qhat3);
     drawnow;
-    pause()
 end

@@ -8,7 +8,8 @@ v = zeros(size(u));
 p = u(1,:);
 q = u(2,:);
 v(1,:)=p;
-v(2,:)=H*q./((1-p).^H);
+pmod = p + eps.*(p==1);
+v(2,:)=H*q./((1-pmod).^H);
 
 end
 
