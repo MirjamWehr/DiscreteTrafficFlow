@@ -24,6 +24,3 @@ else
 %     u2=[d2+x;x];
 %     u3=[d3+y;y];
 end
-
-%theoretisch kann man beide fälle verbinden es gibt aber falls q1=0 und
-%p1=1 ist ein problem, da upper_bound dann durch null teilt
