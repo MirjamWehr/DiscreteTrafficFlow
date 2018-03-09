@@ -14,7 +14,7 @@ else
     d3 = p3-q3;
     %Setting1 Cars spread evenly
     x = min([1-d2,1-d3,q1/(2*(q1-p1+1))]);
-    u1=[1-2*x*(1-p1/q1);2*x];
+    u1=[1-2*x*((1-p1)/q1);2*x];
     u2=[d2+x;x];
     u3=[d3+x;x];
     %Setting2 1.max flux 2.spread evenly
