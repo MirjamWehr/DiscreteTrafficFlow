@@ -19,8 +19,8 @@ phat1 = 1/2;
 qhat1 = 1/2;
 phat2 = 0.9;
 qhat2 = 0.1;
-phat3 = 1;
-qhat3 = 0;
+phat3 = 0.9;
+qhat3 = 0.1;
 %initializing u
 u1 = init_u(phat1,qhat1,N);
 u2 = init_u(phat2,qhat2,N);
