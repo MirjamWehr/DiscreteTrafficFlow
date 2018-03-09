@@ -19,15 +19,16 @@ uml = getM(H,ul,u_old);
 umr = getM(H,u_old,ur);
 
 %converting the variables
-vml = UtoV(uml,H);
-vmr = UtoV(umr,H);
-v_old = UtoV(u_old,H);
+[vml,index1] = UtoV(uml,H);
+[vmr,index2] = UtoV(umr,H);
+[v_old,index3] = UtoV(u_old,H);
 
+index=index1|index2|index3;
 %calculating the new u
 v_new = v_old - (dt/dx)*(f(vmr,H)-f(vml,H));
 
 %converting the result
-u_new = VtoU(v_new,H);
+u_new = VtoU(v_new,H,index);
 
 end
 
