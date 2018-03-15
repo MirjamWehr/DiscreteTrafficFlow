@@ -5,7 +5,7 @@
 %UniPC
 %addpath('/users/cip/users/wehr/Desktop/Masterarbeit/Matlab2/DiscreteTrafficFlow/Homogen');
 %Laptop
-addpath('/home/mirj/Schreibtisch/Masterarbeit/Matlab2/Homogen');
+addpath('/home/mirj/Schreibtisch/Masterarbeit/Matlab2/DiscreteTrafficFlow/Homogen');
 
 %initilize roads
 %the taylor parameter
