@@ -2,7 +2,10 @@
 %to simplify: all roads have length one
 
 %add folder for solving the pde
-addpath('/users/cip/users/wehr/Desktop/Masterarbeit/Matlab2/DiscreteTrafficFlow/Homogen');
+%UniPC
+%addpath('/users/cip/users/wehr/Desktop/Masterarbeit/Matlab2/DiscreteTrafficFlow/Homogen');
+%Laptop
+addpath('/home/mirj/Schreibtisch/Masterarbeit/Matlab2/Homogen');
 
 %initilize roads
 %the taylor parameter
