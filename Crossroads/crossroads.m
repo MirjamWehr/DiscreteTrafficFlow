@@ -18,11 +18,12 @@ dx = 1/N;
 x = 0+1/2*dx:dx:1-1/2*dx;
 %current traffic on the roads
 %!!Important: the initial values always have to fulfil certain conditions!!
+%For the corresponding q and p have tho hold 0<=q<=p<=1
 phat1 = 1/2;
-qhat1 = 1/2;
-phat2 = 0.9;
+qhat1 = 0;
+phat2 = 0.7;
 qhat2 = 0.1;
-phat3 = 0.9;
+phat3 = 0.7;
 qhat3 = 0.1;
 %initializing u
 u1 = init_u(phat1,qhat1,N);
@@ -68,10 +69,16 @@ pause();
 t=0;
 for i=1:N
     %get the next timestep
-    dt1 = get_dt(H,u1,dx);
-    dt2 = get_dt(H,u2,dx);
-    dt3 = get_dt(H,u3,dx);
+    %ubar beruecksichtigen
+    dt1 = get_dt(H,[u1 ubar1],dx);
+    dt2 = get_dt(H,[u2 ubar2],dx);
+    dt3 = get_dt(H,[u3 ubar3],dx);
     dt = min([dt1,dt2,dt3]);
+    if dt==0
+        f = msgbox('The largest absolute eigenvalue is infinity. Therefore dt=0 in order to fulfill the CFL condition.');
+        pause(10)
+        return
+    end
     %solve the PDE for one timestep
     %use default boundary conditions with copied boundary in ghost cell
     u1 = godunovStep(u1,dt,dx,H,u1(:,1),ubar1);
