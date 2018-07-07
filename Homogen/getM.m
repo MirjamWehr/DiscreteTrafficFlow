@@ -20,7 +20,11 @@ for i=1:length(ul(1,:))
     %calculate the intersection point of the two Lax-curves
     %L1: q=ql/((1-pl)^H)*(1-p)^H
     %L2-: q = p-pr+qr
-    p = fzero(@(x) x-ql/((1-pl)^H)*(1-x)^H-pr+qr,pl+(pr-pl)/2);
+    if pl == 1
+        p = 1;
+    else
+        p = fzero(@(x) x-ql/((1-pl)^H)*(1-x)^H-pr+qr,pl+(pr-pl)/2);
+    end
     q = p-pr+qr;
     
     %the godunov state is always this intersection state, since lamda1 is
