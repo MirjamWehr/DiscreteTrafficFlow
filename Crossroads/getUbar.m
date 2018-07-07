@@ -46,7 +46,7 @@ else
             y=c/2;
         end
     end
-    u1=[1-(x+y)*(1-p1/q1);2*x];
+    u1=[1-(x+y)*(1-p1)/q1;2*x];
     u2=[d2+x;x];
     u3=[d3+y;y];       
 end
